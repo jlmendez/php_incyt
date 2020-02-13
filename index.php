@@ -4,7 +4,7 @@
 
 // PHP Data Objects(PDO) Sample Code:
 try {
-    $connect = new PDO("sqlsrv:server = tcp:iotserviciogis.database.windows.net,1433; Database = iotgis", "incyt", "{your_password_here}");
+    $connect = new PDO("sqlsrv:server = tcp:iotserviciogis.database.windows.net,1433; Database = iotgis", "incyt", "1358$oxalacetato");
     $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }
 catch (PDOException $e) {
@@ -13,7 +13,7 @@ catch (PDOException $e) {
 }
 
 // SQL Server Extension Sample Code:
-$connectionInfo = array("UID" => "incyt", "pwd" => "{your_password_here}", "Database" => "iotgis", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
+$connectionInfo = array("UID" => "incyt", "pwd" => "1358$oxalacetato", "Database" => "iotgis", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
 $serverName = "tcp:iotserviciogis.database.windows.net,1433";
 $connect = sqlsrv_connect($serverName, $connectionInfo);
 $query = 'select * from v_ise2_infr_Zdat';
