@@ -1,7 +1,7 @@
 <?php
 //index.php
 //$connect = mysqli_connect("localhost", "root", "", "testing");
-
+$array = array();
 // PHP Data Objects(PDO) Sample Code:
 try {
     $connect = new PDO("sqlsrv:server = tcp:iotserviciogis.database.windows.net,1433; Database = iotgis", "incyt", '1358$oxalacetato');
@@ -22,7 +22,9 @@ $result = query(query)<<_query($connect, $query);
 $rows = array();
 $table = array();
 
-$table['cols'] = array(
+
+
+/*$table['cols'] = array(
  array(
   'label' => 'Date Time', 
   'type' => 'datetime'
@@ -33,7 +35,14 @@ $table['cols'] = array(
  )
 );
 
+<<<<<<< HEAD
+
 foreach($connect->query($sql) as $row )
+||||||| merged common ancestors
+while($row = sqlsrv_fetch_array($result))
+=======
+foreach($connect->query($sql) as $row )
+>>>>>>> 8332d70b2ce2b12aa6fb59d15359112124e5a60b
 {
  $sub_array = array();
  $datetime = explode(".", $row["fecha_recepcion"]);
@@ -49,7 +58,26 @@ foreach($connect->query($sql) as $row )
 }
 $table['rows'] = $rows;
 $jsonTable = json_encode($table);
+*/
+while( $row = sqlsrv_fetch_array( $sql))    
+{  
+    $array[] = array($row[1],$row[2]);
+}
+$addrows = json_encode($array);
 
+?>
+
+<script type="text/javascript">
+    google.charts.load('current', {packages:["orgchart"]});
+    google.charts.setOnLoadCallback(drawChart);
+
+function drawChart() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'fecha_recepcion');
+    data.addColumn('string', 'infrasonido_1');
+    data.addColumn('string', 'ToolTip');
+
+    data.addRows(<?php echo $addrows; ?>);
 ?>
 
 
@@ -63,6 +91,14 @@ $jsonTable = json_encode($table);
    function drawChart()
    {
     var data = new google.visualization.DataTable(<?php echo $jsonTable; ?>);
+    /*---------------------------------------------*/
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'fecha_recepcion');
+    data.addColumn('string', 'infrasonido_1');
+    data.addColumn('string', 'ToolTip');
+
+    data.addRows(<?php echo $addrows; ?>);
+    /*---------------------------------------------*/
 
     var options = {
      title:'Sensors Data',
