@@ -17,8 +17,8 @@ $connectionInfo = array("UID" => "incyt", "pwd" => '1358$oxalacetato', "Database
 $serverName = "tcp:iotserviciogis.database.windows.net,1433";
 $connect = sqlsrv_connect($serverName, $connectionInfo);
 
-$query = 'select * from v_ise2_infr_Zdat';
-$result = slqsrv_query(query)<<_query($connect, $query);
+$sql = 'select * from v_ise2_infr_Zdat';
+$result = query(query)<<_query($connect, $query);
 $rows = array();
 $table = array();
 
@@ -33,7 +33,7 @@ $table['cols'] = array(
  )
 );
 
-while($row = sqlsrv_fetch_array($result))
+foreach($connect->query($sql) as $row )
 {
  $sub_array = array();
  $datetime = explode(".", $row["fecha_recepcion"]);
