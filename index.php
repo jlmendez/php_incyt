@@ -16,8 +16,9 @@ catch (PDOException $e) {
 $connectionInfo = array("UID" => "incyt", "pwd" => '1358$oxalacetato', "Database" => "iotgis", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
 $serverName = "tcp:iotserviciogis.database.windows.net,1433";
 $connect = sqlsrv_connect($serverName, $connectionInfo);
+
 $query = 'select * from v_ise2_infr_Zdat';
-$result = mssql_query(query)<<_query($connect, $query);
+$result = slqsrv_query(query)<<_query($connect, $query);
 $rows = array();
 $table = array();
 
@@ -32,7 +33,7 @@ $table['cols'] = array(
  )
 );
 
-while($row = mssql_fetch_array($result))
+while($row = sqlsrv_fetch_array($result))
 {
  $sub_array = array();
  $datetime = explode(".", $row["fecha_recepcion"]);
